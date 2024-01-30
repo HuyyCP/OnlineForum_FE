@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:onlineforum_fe/routes.dart';
+import 'package:onlineforum_fe/views/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
+      title: 'Online Forum',
+      initialRoute: '/home',
+      routes: {
+        '/home': (_) => const HomePage(),
+      },
     );
   }
 }
