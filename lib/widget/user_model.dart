@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/models/user.dart';
 
 class UserModel extends StatefulWidget {
-  User user;
+  ({String name, String email}) user;
   UserModel(this.user, {super.key});
 
   @override
