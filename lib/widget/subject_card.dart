@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class SubjectCard extends StatefulWidget {
@@ -10,6 +9,8 @@ class SubjectCard extends StatefulWidget {
 }
 
 class _SubjectCardState extends State<SubjectCard> {
+  Color? colorOnTap = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,26 +23,45 @@ class _SubjectCardState extends State<SubjectCard> {
           )
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            alignment: Alignment.centerLeft,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.grey[300]
             ),
-            child: Text(widget.subject.subjectname),
+            child: Text(
+              widget.subject.subjectname,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold
+              )
+            ),
           ),
           Container(
+            padding: const EdgeInsets.all(5),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: widget.subject.subsubjects.map((subsubject) => GestureDetector(
-                child: Text(
-                  subsubject.subsubjectname,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
+                child: Container(
+                  width: double.maxFinite,
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: colorOnTap,
+                  ),
+                  child: Text(
+                    subsubject.subsubjectname,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      // decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
                 onTap: () async {
-
+                  colorOnTap = Colors.grey[250];
+                },
+                onTapCancel: () async {
+                  colorOnTap = Colors.white;
                 },
               )).toList()
             ),

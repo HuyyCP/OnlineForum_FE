@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:onlineforum_fe/api_services/account_api_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,49 +21,64 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: Container(
           width: 300,
-          // height: 500,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisSize: MainAxisSize.min,
             children: [
-               TextFormField(
-                controller: usernameController,
-                decoration: const InputDecoration(
-                  labelText: "Username",
-                ),
-              ),
-               TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: "Password",
-                ),
+              const Text(
+                "Online Forum",
+                style: TextStyle(
+                  fontSize: 50,
+                )
               ),
               Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    String username = usernameController.text;
-                    String password = passwordController.text;
-                    if (await AccountAPIService.login(username, password)) {
-                      Navigator.pushReplacementNamed(context, '/home');
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            content: Text(
-                              "Incorrect username or password"
-                            )
-                          );
-                        }
-                      );
-                    }
-                  },
-                  child: Text("Login"),
-                ),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: usernameController,
+                      decoration: const InputDecoration(
+                        labelText: "Username",
+                      ),
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: "Password",
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          String username = usernameController.text;
+                          String password = passwordController.text;
+                          if (await AccountAPIService.login(username, password)) {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                  contentPadding: const EdgeInsets.all(20),
+                                  content: const Text(
+                                    "Incorrect username or password",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
+                              }
+                            );
+                          }
+                        },
+                        child: const Text("Login"),
+                      ),
+                    ),
+                  ],
+                )
               ),
               Container(
-                margin: const EdgeInsets.only(top : 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -69,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         'Register',
                         style: TextStyle(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       onTap: () async {

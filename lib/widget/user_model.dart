@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:onlineforum_fe/models/user.dart';
 
 class UserModel extends StatefulWidget {
   ({String name, String email}) user;
