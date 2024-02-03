@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onlineforum_fe/views/home_page.dart';
-import 'package:onlineforum_fe/views/login_page.dart';
+import 'package:onlineforum_fe/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Online Forum',
       initialRoute: '/login',
-      routes: {
-        '/login': (_) => const LoginPage(),
-        '/home': (_) => const HomePage(),
-      },
+      routes: Routes.init(context),
       debugShowCheckedModeBanner: false,
     );
   }

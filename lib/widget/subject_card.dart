@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineforum_fe/views/subject_page.dart';
 
 class SubjectCard extends StatefulWidget {
   ({String subjectname, List<({String idsubsubject, String subsubjectname})> subsubjects}) subject;
@@ -53,12 +54,17 @@ class _SubjectCardState extends State<SubjectCard> {
                     subsubject.subsubjectname,
                     style: const TextStyle(
                       color: Colors.black,
-                      // decoration: TextDecoration.underline,
                     ),
                   ),
                 ),
                 onTap: () async {
                   colorOnTap = Colors.grey[250];
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => SubjectPage(subsubject.idsubsubject)
+                    )
+                  );
                 },
                 onTapCancel: () async {
                   colorOnTap = Colors.white;

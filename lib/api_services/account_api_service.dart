@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountAPIService {
   static const String _loginAPI = '/account/login';
+  static const String _verifyTokenAPI = '/account/verify-token';
 
   static Future<bool> login (String username, String password) async {
     try {
@@ -24,8 +25,35 @@ class AccountAPIService {
         return false;
       }
     } catch (err) {
+      print("Error: $err");
       return false;
     }
+  }
 
+  static Future<bool> verifyToken() async {
+    try {
+      var prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString('token');
+      if(token == null) {
+        return false;
+      }
+      final response = await http.post(
+        Uri.http(Config.apiURL, _verifyTokenAPI),
+        headers: {
+          "Authorization" : token
+        }
+      );
+      if(response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        print(data);
+        await prefs.setString("token", data['token']);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      print("Error: $err");
+      return false;
+    }
   }
 }

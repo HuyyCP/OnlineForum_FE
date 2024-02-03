@@ -19,21 +19,22 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-            padding: const EdgeInsets.all(10),
-            child: FutureBuilder<List<dynamic>?>(
-              future: SubjectAPIService.getSubject(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List<SubjectCard>.from(snapshot.data!.map(
-                        (record) => SubjectCard(
-                            record as ({String subjectname, List<({String idsubsubject, String subsubjectname})> subsubjects})))));
-                }
-                return const Center(child: CircularProgressIndicator());
-              },
-            )),
+          padding: const EdgeInsets.all(10),
+          child: FutureBuilder<List<dynamic>?>(
+            future: SubjectAPIService.getSubject(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List<SubjectCard>.from(snapshot.data!.map(
+                    (record) => SubjectCard(
+                      record as ({String subjectname, List<({String idsubsubject, String subsubjectname})> subsubjects})))));
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          )
+        ),
       ),
     );
   }
