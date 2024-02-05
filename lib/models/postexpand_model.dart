@@ -7,7 +7,7 @@ class PostExpandModel {
   late DateTime datecreate;
   late String content;
   late UserBriefModel author;
-  late List<CommentModel> comments;
+  late List<CommentModel>? comments = [];
 
-  PostExpandModel(this.idpost, this.title, this.datecreate, this.content, this.author, this.comments);
+  PostExpandModel(this.idpost, this.title, this.datecreate, this.content, this.author, [this.comments]);
 }

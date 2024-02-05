@@ -24,25 +24,26 @@ class PostAPIService {
         return PostExpandModel(
           data['idpost'], 
           data['title'], 
-          data['datecreate'], 
+          DateTime.parse(data['datecreate']), 
           data['content'],
           UserBriefModel(
               data['User']['iduser'],
               data['User']['name'],
-              data['User']['rolename']
+              data['User']['Role']['rolename']
           ),
           List.from(data['Comments'].map((comment) => CommentModel(
             comment['idcomment'], 
             comment['message'],
-            comment['datecomment'],
+            DateTime.parse(comment['datecomment']),
             UserBriefModel(
               comment['User']['iduser'],
-              comment['User'][' name'],
+              comment['User']['name'],
               comment['User']['Role']['rolename']
             )
         ))));     
+      } else {
+        return null;
       }
-
     } catch (err) {
       return null;
     }
