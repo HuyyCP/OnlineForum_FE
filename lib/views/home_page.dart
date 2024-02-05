@@ -25,11 +25,15 @@ class _HomePageState extends State<HomePage> {
             future: SubjectAPIService.getSubject(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List<SubjectCard>.from(snapshot.data!.map(
-                    (record) => SubjectCard(record))));
+                return Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List<SubjectCard>.from(snapshot.data!.map(
+                        (record) => SubjectCard(record)))),
+                  ),
+                );
               }
               return const Center(child: CircularProgressIndicator());
             },

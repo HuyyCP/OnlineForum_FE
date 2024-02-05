@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:onlineforum_fe/models/comment_model.dart';
 
 class CommentCard extends StatefulWidget {
@@ -30,12 +31,13 @@ class _CommentCardState extends State<CommentCard> {
               color: Colors.grey[200],
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(widget.comment.author.name),
-                const SizedBox(width: 15),
-                Text(widget.comment.author.rolename),
-                const SizedBox(width: 15),
-                Text(widget.comment.datecomment.toLocal().toString())
+                // const SizedBox(width: 10),
+                // Text(widget.comment.author.rolename),
+                const SizedBox(width: 10),
+                Text("at ${DateFormat('kk:mm dd-MM-yyyy').format(widget.comment.datecomment)}")
               ],
             ),
           ),
@@ -43,7 +45,7 @@ class _CommentCardState extends State<CommentCard> {
             padding: const EdgeInsets.all(10),
             child: Text(
               widget.comment.message,
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.ellipsis,
             )
           )
         ],

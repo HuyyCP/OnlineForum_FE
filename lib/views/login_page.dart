@@ -22,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
                 "Online Forum",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:onlineforum_fe/models/postbrief_model.dart';
 import 'package:onlineforum_fe/views/post_page.dart';
 
@@ -45,6 +46,7 @@ class _PostCardState extends State<PostCard> {
                       overflow: TextOverflow.ellipsis,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: Text(
@@ -52,13 +54,13 @@ class _PostCardState extends State<PostCard> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(width: 15),
+                      // const SizedBox(width: 10),
+                      // Text(
+                      //   widget.post.author.rolename
+                      // ),
+                      const SizedBox(width: 10),
                       Text(
-                        widget.post.author.rolename
-                      ),
-                      const SizedBox(width: 15),
-                      Text(
-                        "at ${widget.post.datecreate.toLocal().toString()}",
+                        "at ${DateFormat('kk:mm dd-MM-yyyy').format(widget.post.datecreate)}",
                       ),
                     ],
                   )
@@ -67,7 +69,7 @@ class _PostCardState extends State<PostCard> {
             ),
             Container(
               padding: const EdgeInsets.all(5),
-              child: Text(widget.post.content, overflow: TextOverflow.ellipsis,),
+              child: Text(widget.post.content),
             )
           ]
         )
