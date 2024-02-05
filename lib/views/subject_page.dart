@@ -19,13 +19,13 @@ class _SubjectPageState extends State<SubjectPage> {
         if(snapshot.hasData) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(snapshot.data.subjectname),
+              title: Text(snapshot.data!.subjectname),
             ),
             body: Container(
               padding: const EdgeInsets.all(10),
               child: Column(
-                children: List<PostCard>.from(snapshot.data.posts.map(
-                  (post) => PostCard(post as ({String idpost, String title, String content}))
+                children: List<PostCard>.from(snapshot.data!.posts!.map(
+                  (post) => PostCard(post)
                 )),
               )
             )

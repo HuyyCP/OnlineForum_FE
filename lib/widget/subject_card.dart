@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:onlineforum_fe/models/subject_model.dart';
 import 'package:onlineforum_fe/views/subject_page.dart';
 
 class SubjectCard extends StatefulWidget {
-  ({String subjectname, List<({String idsubsubject, String subsubjectname})> subsubjects}) subject;
+  SubjectModel subject;
   SubjectCard(this.subject, {super.key});
 
   @override
@@ -16,7 +17,6 @@ class _SubjectCardState extends State<SubjectCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      // width: double.maxFinite,
       decoration: BoxDecoration(
           border: Border.all(
               color: Colors.black,
@@ -43,7 +43,7 @@ class _SubjectCardState extends State<SubjectCard> {
             padding: const EdgeInsets.all(5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.subject.subsubjects.map((subsubject) => GestureDetector(
+              children: widget.subject.subsubjects!.map((subsubject) => GestureDetector(
                 child: Container(
                   width: double.maxFinite,
                   padding: const EdgeInsets.all(5),
@@ -51,7 +51,7 @@ class _SubjectCardState extends State<SubjectCard> {
                     color: colorOnTap,
                   ),
                   child: Text(
-                    subsubject.subsubjectname,
+                    subsubject.subjectname,
                     style: const TextStyle(
                       color: Colors.black,
                     ),
@@ -62,7 +62,7 @@ class _SubjectCardState extends State<SubjectCard> {
                   Navigator.push(
                     context, 
                     MaterialPageRoute(
-                      builder: (context) => SubjectPage(subsubject.idsubsubject)
+                      builder: (context) => SubjectPage(subsubject.idsubject)
                     )
                   );
                 },

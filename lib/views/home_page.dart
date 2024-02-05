@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/subject_api_service.dart';
+import 'package:onlineforum_fe/models/subject_model.dart';
 import '../widget/subject_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10),
-          child: FutureBuilder<List<dynamic>?>(
+          child: FutureBuilder(
             future: SubjectAPIService.getSubject(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -28,8 +29,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: List<SubjectCard>.from(snapshot.data!.map(
-                    (record) => SubjectCard(
-                      record as ({String subjectname, List<({String idsubsubject, String subsubjectname})> subsubjects})))));
+                    (record) => SubjectCard(record))));
               }
               return const Center(child: CircularProgressIndicator());
             },

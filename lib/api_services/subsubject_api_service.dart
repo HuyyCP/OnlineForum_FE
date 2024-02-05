@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:onlineforum_fe/config/api_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:onlineforum_fe/models/postbrief_model.dart';
+import 'package:onlineforum_fe/models/subsubject_model.dart';
+import 'package:onlineforum_fe/models/userbrief_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SubSubjectAPIService {
   static const String _getSubSubjectAPI = '/subsubject';
 
-  static Future<dynamic> getSubSubject(String idsubsubject) async {
+  static Future<SubSubjectModel?> getSubSubject(String idsubsubject) async {
     try {
       var prefs = await SharedPreferences.getInstance();
       var token = prefs.getString('token');
@@ -18,15 +21,20 @@ class SubSubjectAPIService {
       );
       if(response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        var res = (
-          subjectname: data['subjectname'],
-          posts: List.from(data['Posts'].map((post) => (
-            idpost: post['idpost'],
-            title: post['title'],
-            content: post['content'],
-          ))),
+        return SubSubjectModel(
+          data['idsubject'],
+          data['subjectname'],
+          List.from(data['Posts'].map((post) => PostBriefModel(
+            post['idpost'],
+            post['title'],
+            DateTime.parse(post['datecreate']),
+            post['content'],
+            UserBriefModel(
+              post['User']['iduser'],
+              post['User']['name'],
+              post['User']['Role']['rolename']
+            )))),
         );
-        return res;
       } else {
         return null;
       }

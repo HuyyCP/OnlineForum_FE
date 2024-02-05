@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:onlineforum_fe/models/postbrief_model.dart';
 import 'package:onlineforum_fe/views/post_page.dart';
 
 class PostCard extends StatefulWidget {
-  ({String idpost, String title, String content }) subject;
-  PostCard(this.subject, {super.key});
+  PostBriefModel post;
+  PostCard(this.post, {super.key});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -16,7 +17,6 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      // width: double.maxFinite,
       decoration: BoxDecoration(
           border: Border.all(
               color: Colors.black,
@@ -32,27 +32,49 @@ class _PostCardState extends State<PostCard> {
             decoration: BoxDecoration(
               color: Colors.grey[300]
             ),
-            child: Text(
-              widget.subject.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold
-              )
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                    widget.post.title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      child: Text(
+                        "By ${widget.post.author.name}",
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Text(
+                      widget.post.author.rolename
+                    ),
+                    const SizedBox(width: 15),
+                    Text(
+                      "at ${widget.post.datecreate.toLocal().toString()}",
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
           Container(
             padding: const EdgeInsets.all(5),
             child: GestureDetector(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(widget.subject.content),
-                ],
-              ),
+              child: 
+                  Text(widget.post.content, overflow: TextOverflow.ellipsis,),
+            
               onTap: () async {
                 Navigator.push(
                   context, 
                   MaterialPageRoute(
-                    builder: (context) => PostPage(widget.subject.idpost),
+                    builder: (context) => PostPage(widget.post.idpost),
                   )
                 );
               },
