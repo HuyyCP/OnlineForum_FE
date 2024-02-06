@@ -21,13 +21,17 @@ class _SubjectPageState extends State<SubjectPage> {
             appBar: AppBar(
               title: Text(snapshot.data!.subjectname),
             ),
-            body: Container(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: List<PostCard>.from(snapshot.data!.posts!.map(
-                  (post) => PostCard(post)
-                )),
-              )
+            body: Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: List<PostCard>.from(snapshot.data!.posts!.map(
+                      (post) => PostCard(post)
+                    )),
+                  )
+                ),
+              ),
             )
           );
         }

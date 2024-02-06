@@ -43,7 +43,7 @@ class _PostCardState extends State<PostCard> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
-                      overflow: TextOverflow.ellipsis,
+                      // overflow: TextOverflow.ellipsis,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
