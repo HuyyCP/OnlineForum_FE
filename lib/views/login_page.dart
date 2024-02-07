@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/account_api_service.dart';
+import 'package:onlineforum_fe/helpers/validators.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -29,16 +32,20 @@ class _LoginPageState extends State<LoginPage> {
                   fontSize: 50,
                 )
               ),
-              Container(
+              Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     TextFormField(
+                      validator: validateUsername,
                       controller: usernameController,
                       decoration: const InputDecoration(
                         labelText: "Username",
                       ),
                     ),
                     TextFormField(
+                      validator: validatePassword,
                       controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -49,24 +56,26 @@ class _LoginPageState extends State<LoginPage> {
                       margin: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () async {
-                          String username = usernameController.text;
-                          String password = passwordController.text;
-                          if (await AccountAPIService.login(username, password)) {
-                            Navigator.pushReplacementNamed(context, '/home');
-                          } else {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                  contentPadding: const EdgeInsets.all(20),
-                                  content: const Text(
-                                    "Incorrect username or password",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                );
-                              }
-                            );
+                          if(_formKey.currentState!.validate()) {
+                            String username = usernameController.text;
+                            String password = passwordController.text;
+                            if (await AccountAPIService.login(username, password)) {
+                              Navigator.pushReplacementNamed(context, '/home');
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                    contentPadding: const EdgeInsets.all(20),
+                                    content: const Text(
+                                      "Incorrect username or password",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                }
+                              );
+                            }
                           }
                         },
                         child: const Text("Login"),

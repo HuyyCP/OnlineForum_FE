@@ -23,8 +23,6 @@ class _RegisterPageState extends State<RegisterPage> {
   DateTime? dateofbirth = DateTime.now();
   TextEditingController phonenumberController = TextEditingController();
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.always,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     TextFormField(
@@ -101,14 +99,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       margin: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () async {
-                          String name = nameController.text;
-                          String username = usernameController.text;
-                          String password = passwordController.text;
-                          String dob = dateofbirth!.toIso8601String();
-                          String email = emailController.text;
-                          String phonenumber = phonenumberController.text;
-
                           if(_formKey.currentState!.validate()) {
+                            String name = nameController.text;
+                            String username = usernameController.text;
+                            String password = passwordController.text;
+                            String dob = dateofbirth!.toIso8601String();
+                            String email = emailController.text;
+                            String phonenumber = phonenumberController.text;
+
                             if (await AccountAPIService.register(name, username, password, dob, email, phonenumber)) {
                               Navigator.pushReplacementNamed(context, '/login');
                               showDialog(
