@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onTap: () async {
-      
+                        Navigator.pushReplacementNamed(context, '/register');
                       },
                     )
                   ],

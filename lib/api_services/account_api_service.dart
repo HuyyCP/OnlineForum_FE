@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AccountAPIService {
   static const String _loginAPI = '/account/login';
   static const String _verifyTokenAPI = '/account/verify-token';
+  static const String _registerAPI = '/account/register';
 
   static Future<bool> login (String username, String password) async {
     try {
@@ -56,4 +57,33 @@ class AccountAPIService {
       return false;
     }
   }
+
+  static Future<bool> register(
+    String name, 
+    String username, 
+    String password, 
+    String dateofbirth, 
+    String email,
+    String phonenumber) async {
+      try {
+        final response = await http.post(
+          Uri.http(Config.apiURL, _registerAPI),
+          body : {
+            "name": name, 
+            "username": username,
+            "password": password, 
+            "email": email,
+            "dateofbirth": dateofbirth,
+            "phonenumber": phonenumber
+          }
+        );
+        if(response.statusCode == 200) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (err) {
+        return false;
+      }
+    }
 }
