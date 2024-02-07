@@ -59,11 +59,12 @@ class _SubjectCardState extends State<SubjectCard> {
                 ),
                 onTap: () async {
                   colorOnTap = Colors.grey[250];
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context, 
-                    MaterialPageRoute(
-                      builder: (context) => SubjectPage(subsubject.idsubject)
-                    )
+                    '/subject',
+                    arguments: {
+                      'idsubject': subsubject.idsubject
+                    }
                   );
                 },
                 onTapCancel: () async {

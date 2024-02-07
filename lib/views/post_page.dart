@@ -6,8 +6,7 @@ import 'package:onlineforum_fe/widget/comment_card.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
 
 class PostPage extends StatefulWidget {
-  late String idpost;
-  PostPage(this.idpost, {super.key});
+  const PostPage({super.key});
 
   @override
   State<PostPage> createState() => _PostPageState();
@@ -34,8 +33,9 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return FutureBuilder(
-      future: PostAPIService.getPost(widget.idpost), 
+      future: PostAPIService.getPost(args['idpost']), 
       builder: (context, snapshot) {
         if(snapshot.hasData) {
           return Scaffold(

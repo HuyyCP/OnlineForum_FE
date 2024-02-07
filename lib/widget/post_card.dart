@@ -75,11 +75,12 @@ class _PostCardState extends State<PostCard> {
         )
       ),
       onTap: () async {
-        Navigator.push(
+        Navigator.pushNamed(
           context, 
-          MaterialPageRoute(
-            builder: (context) => PostPage(widget.post.idpost),
-          )
+          '/post',
+          arguments: {
+            'idpost': widget.post.idpost
+          }
         );
       },
     );

@@ -3,8 +3,7 @@ import 'package:onlineforum_fe/api_services/subsubject_api_service.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
 
 class SubjectPage extends StatefulWidget {
-  late String idsubject;
-  SubjectPage(this.idsubject, {super.key});
+  const SubjectPage({super.key});
 
   @override
   State<SubjectPage> createState() => _SubjectPageState();
@@ -13,8 +12,9 @@ class SubjectPage extends StatefulWidget {
 class _SubjectPageState extends State<SubjectPage> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return FutureBuilder(
-      future: SubSubjectAPIService.getSubSubject(widget.idsubject), 
+      future: SubSubjectAPIService.getSubSubject(args['idsubject']), 
       builder: (context, snapshot) {
         if(snapshot.hasData) {
           return Scaffold(
