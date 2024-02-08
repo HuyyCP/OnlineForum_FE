@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                             String username = usernameController.text;
                             String password = passwordController.text;
                             if (await AccountAPIService.login(username, password)) {
-                              Navigator.pushReplacementNamed(context, '/home');
+                              Navigator.pushReplacementNamed(context, '/index');
                             } else {
                               showDialog(
                                 context: context,

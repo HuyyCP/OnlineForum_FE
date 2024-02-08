@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Online Forum"),
+        title: const Text("Home"),
         backgroundColor: Colors.grey[300],
       ),
       body: SingleChildScrollView(

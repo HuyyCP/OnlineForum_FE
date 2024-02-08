@@ -106,7 +106,7 @@ class _PostPageState extends State<PostPage> {
             ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       });
   }
 }
