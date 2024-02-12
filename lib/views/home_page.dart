@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/subject_api_service.dart';
 import 'package:onlineforum_fe/models/subject_model.dart';
+import 'package:onlineforum_fe/widget/menu_btn.dart';
 import '../widget/subject_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Home"),
         backgroundColor: Colors.grey[300],
+        actions: const [
+          MenuButton()
+        ]
       ),
       body: SingleChildScrollView(
         child: Container(

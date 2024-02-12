@@ -3,6 +3,7 @@ import 'package:onlineforum_fe/api_services/comment_api_service.dart';
 import 'package:onlineforum_fe/api_services/post_api_service.dart';
 import 'package:onlineforum_fe/models/postbrief_model.dart';
 import 'package:onlineforum_fe/widget/comment_card.dart';
+import 'package:onlineforum_fe/widget/menu_btn.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
 
 class PostPage extends StatefulWidget {
@@ -41,6 +42,10 @@ class _PostPageState extends State<PostPage> {
           return Scaffold(
             appBar: AppBar(
               title: const Text("Post"),
+              backgroundColor: Colors.grey[300],
+              actions: const [
+                MenuButton()
+              ]
             ),
             body: Container(
               margin: const EdgeInsets.all(10),

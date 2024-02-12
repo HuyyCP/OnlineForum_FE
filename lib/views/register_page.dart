@@ -20,7 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  DateTime? dateofbirth = DateTime.now();
+  TextEditingController dobController = TextEditingController();
   TextEditingController phonenumberController = TextEditingController();
 
   @override
@@ -73,21 +73,25 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     Row(
-                      children: [
-                        Text(
-                          DateFormat('dd-MM-yyyy').format(dateofbirth!)
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.edit_calendar),
-                          onPressed: () async {
-                            dateofbirth =  await selectDate(context);
-                            setState(() {
-                              
-                            });
-                          },
-                        )
-                      ],
-                    ),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: dobController,
+                              decoration: const InputDecoration(
+                                labelText: "Date of birth",
+                              ),
+                              readOnly: true,
+                                onTap: () async {
+                                final selectedDate = await selectDate(context);
+                                if (selectedDate != null) {
+                                  dobController.text = DateFormat('dd-MM-yyyy').format(selectedDate);
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     TextFormField( 
                       validator: validatePhonenumber,
                       controller: phonenumberController,
@@ -103,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             String name = nameController.text;
                             String username = usernameController.text;
                             String password = passwordController.text;
-                            String dob = dateofbirth!.toIso8601String();
+                            String dob = dobController.text;
                             String email = emailController.text;
                             String phonenumber = phonenumberController.text;
 

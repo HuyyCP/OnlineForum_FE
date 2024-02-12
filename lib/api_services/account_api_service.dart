@@ -7,6 +7,7 @@ class AccountAPIService {
   static const String _loginAPI = '/account/login';
   static const String _verifyTokenAPI = '/account/verify-token';
   static const String _registerAPI = '/account/register';
+  static const String _changePasswordAPI = 'account/change-password';
 
   static Future<bool> login (String username, String password) async {
     try {
@@ -75,6 +76,32 @@ class AccountAPIService {
             "email": email,
             "dateofbirth": dateofbirth,
             "phonenumber": phonenumber
+          }
+        );
+        if(response.statusCode == 200) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (err) {
+        return false;
+      }
+    }
+
+    static Future<bool> changePassword(String password) async {
+      try {
+        var prefs = await SharedPreferences.getInstance();
+        var token = prefs.getString('token');
+        if(token == null) {
+          return false;
+        }
+        final response = await http.patch(
+          Uri.http(Config.apiURL, _changePasswordAPI),
+          headers: {
+            "Authorization" : token
+          },
+          body: {
+            "password": password
           }
         );
         if(response.statusCode == 200) {

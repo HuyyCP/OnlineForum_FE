@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/subsubject_api_service.dart';
+import 'package:onlineforum_fe/widget/menu_btn.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
 
 class SubjectPage extends StatefulWidget {
@@ -20,6 +21,10 @@ class _SubjectPageState extends State<SubjectPage> {
           return Scaffold(
             appBar: AppBar(
               title: Text(snapshot.data!.subjectname),
+              backgroundColor: Colors.grey[300],
+              actions: const [
+                MenuButton()
+              ]
             ),
             body: Expanded(
               child: SingleChildScrollView(
