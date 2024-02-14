@@ -5,6 +5,7 @@ import 'package:onlineforum_fe/api_services/post_api_service.dart';
 import 'package:onlineforum_fe/api_services/subject_api_service.dart';
 import 'package:onlineforum_fe/helpers/validators.dart';
 import 'package:onlineforum_fe/models/subject_model.dart';
+import 'package:onlineforum_fe/widget/back_and_reload_btn.dart';
 
 class AddPostPage extends StatefulWidget {
   const AddPostPage({super.key});
@@ -28,6 +29,7 @@ class _AddPostPageState extends State<AddPostPage> {
       appBar: AppBar(
         title: const Text("Add post"),
         backgroundColor: Colors.grey[300],
+        // leading: BackAndReloadButton('/home'),
       ),
       // resizeToAvoidBottomInset: false,
       body : Container(

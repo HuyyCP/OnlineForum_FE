@@ -47,7 +47,6 @@ class AccountAPIService {
       );
       if(response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        print(data);
         await prefs.setString("token", data['token']);
         return true;
       } else {

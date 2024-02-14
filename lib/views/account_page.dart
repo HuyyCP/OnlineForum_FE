@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:onlineforum_fe/api_services/user_api_service.dart';
 import 'package:onlineforum_fe/helpers/date_picker.dart';
 import 'package:onlineforum_fe/helpers/validators.dart';
+import 'package:onlineforum_fe/widget/back_and_reload_btn.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -36,6 +37,7 @@ class _AccountPageState extends State<AccountPage> {
             appBar: AppBar(
               title: const Text("My information"),
               backgroundColor: Colors.grey[300],
+              // leading: BackAndReloadButton('/menu'),
             ),
             body: Container(
               margin: const EdgeInsets.all(10),

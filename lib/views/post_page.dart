@@ -3,6 +3,7 @@ import 'package:onlineforum_fe/api_services/comment_api_service.dart';
 import 'package:onlineforum_fe/api_services/post_api_service.dart';
 import 'package:onlineforum_fe/helpers/validators.dart';
 import 'package:onlineforum_fe/models/postbrief_model.dart';
+import 'package:onlineforum_fe/widget/back_and_reload_btn.dart';
 import 'package:onlineforum_fe/widget/comment_card.dart';
 import 'package:onlineforum_fe/widget/menu_btn.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
@@ -47,7 +48,8 @@ class _PostPageState extends State<PostPage> {
               backgroundColor: Colors.grey[300],
               actions: const [
                 MenuButton()
-              ]
+              ],
+              // leading: BackAndReloadButton('/subject', arguments: {'idsubject' : snapshot.data!.subject.idsubject}),
             ),
             body: Container(
               margin: const EdgeInsets.all(10),

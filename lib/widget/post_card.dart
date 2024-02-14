@@ -58,7 +58,7 @@ class _PostCardState extends State<PostCard> {
                       // Text(
                       //   widget.post.author.rolename
                       // ),
-                      const SizedBox(width: 10),
+                      // const SizedBox(width: 10),
                       Text(
                         "at ${DateFormat('kk:mm dd-MM-yyyy').format(widget.post.datecreate)}",
                       ),
@@ -75,13 +75,14 @@ class _PostCardState extends State<PostCard> {
         )
       ),
       onTap: () async {
-        Navigator.pushNamed(
+        await Navigator.pushNamed(
           context, 
           '/post',
           arguments: {
             'idpost': widget.post.idpost
           }
         );
+        setState(() { });
       },
     );
   }

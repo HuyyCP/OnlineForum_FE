@@ -18,8 +18,9 @@ class _AddPostButtonState extends State<AddPostButton> {
       child: IconButton(
           icon: const Icon(Icons.add), 
           color: Colors.white,
-          onPressed: () {
-            Navigator.pushNamed(context, '/add-post');
+          onPressed: () async {
+            await Navigator.pushNamed(context, '/add-post');
+            setState(() { });
           },
         ),
     );

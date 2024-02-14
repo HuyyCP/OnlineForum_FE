@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/account_api_service.dart';
 import 'package:onlineforum_fe/helpers/validators.dart';
+import 'package:onlineforum_fe/widget/back_and_reload_btn.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
@@ -23,6 +24,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       appBar: AppBar(
         title: const Text("Change password"),
         backgroundColor: Colors.grey[300],
+        // leading: BackAndReloadButton('/menu'),
       ),
       body: Container(
         margin: const EdgeInsets.all(10), 

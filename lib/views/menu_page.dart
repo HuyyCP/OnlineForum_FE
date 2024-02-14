@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/user_api_service.dart';
+import 'package:onlineforum_fe/widget/back_and_reload_btn.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -19,6 +20,7 @@ class _MenuPageState extends State<MenuPage> {
             appBar: AppBar(
               title: const Text("My Account"),
               backgroundColor: Colors.grey[300],
+              // leading: BackAndReloadButton('/home'),
             ),
             body: Container(
               margin: const EdgeInsets.all(10),
@@ -43,8 +45,9 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                   Text(snapshot.data!.name),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/account-info');
+                    onTap: () async {
+                      await Navigator.pushNamed(context, '/account-info');
+                      setState(() { });
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5),
@@ -57,8 +60,9 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/change-password');
+                    onTap: () async {
+                      await Navigator.pushNamed(context, '/change-password');
+                      setState(() { });
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5),

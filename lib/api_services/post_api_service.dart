@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:onlineforum_fe/config/api_config.dart';
 import 'package:onlineforum_fe/models/comment_model.dart';
 import 'package:onlineforum_fe/models/postexpand_model.dart';
+import 'package:onlineforum_fe/models/subsubject_model.dart';
 import 'package:onlineforum_fe/models/userbrief_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +28,10 @@ class PostAPIService {
           data['title'], 
           DateTime.parse(data['datecreate']), 
           data['content'],
+          SubSubjectModel(
+            data['SubSubject']['idsubject'],
+            data['SubSubject']['subjectname']
+          ),
           UserBriefModel(
               data['User']['iduser'],
               data['User']['name'],

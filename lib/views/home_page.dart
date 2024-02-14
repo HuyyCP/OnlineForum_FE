@@ -24,8 +24,7 @@ class _HomePageState extends State<HomePage> {
         ]
       ),
       floatingActionButton: const AddPostButton(),
-      body: SingleChildScrollView(
-        child: Container(
+      body: Container(
           padding: const EdgeInsets.all(10),
           child: FutureBuilder(
             future: SubjectAPIService.getSubject(),
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             },
           )
         ),
-      ),
+      
     );
   }
 }

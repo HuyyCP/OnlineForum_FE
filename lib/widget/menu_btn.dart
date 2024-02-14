@@ -12,8 +12,9 @@ class _MenuButtonState extends State<MenuButton> {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.menu),
-      onPressed: () {
-        Navigator.pushNamed(context, '/menu');
+      onPressed: () async {
+        await Navigator.pushNamed(context, '/menu');
+        setState(() { });
       },
     );
   }

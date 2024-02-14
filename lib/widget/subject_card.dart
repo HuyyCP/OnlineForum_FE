@@ -59,13 +59,14 @@ class _SubjectCardState extends State<SubjectCard> {
                 ),
                 onTap: () async {
                   colorOnTap = Colors.grey[250];
-                  Navigator.pushNamed(
+                  await Navigator.pushNamed(
                     context, 
                     '/subject',
                     arguments: {
                       'idsubject': subsubject.idsubject
                     }
                   );
+                  setState(() { });
                 },
                 onTapCancel: () async {
                   colorOnTap = Colors.white;
