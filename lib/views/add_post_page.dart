@@ -97,45 +97,55 @@ class _AddPostPageState extends State<AddPostPage> {
                           labelText: "Content"
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () async {
-                          if(_formKey.currentState!.validate()) {
-                            String idsubject = selectedSubsubject!;
-                            String title = titleController.text;
-                            String content = contentController.text;
-                            if(await PostAPIService.addPost(idsubject, title, content)) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                    contentPadding: const EdgeInsets.all(20),
-                                    content: const Text(
-                                      "Add post successfully",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
-                                }
-                              );
-                              _formKey.currentState!.reset();
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                    contentPadding: const EdgeInsets.all(20),
-                                    content: const Text(
-                                      "Add post failed",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
-                                }
-                              );
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                            )
+                          ),
+                          onPressed: () async {
+                            if(_formKey.currentState!.validate()) {
+                              String idsubject = selectedSubsubject!;
+                              String title = titleController.text;
+                              String content = contentController.text;
+                              if(await PostAPIService.addPost(idsubject, title, content)) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                      contentPadding: const EdgeInsets.all(20),
+                                      content: const Text(
+                                        "Add post successfully",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    );
+                                  }
+                                );
+                                _formKey.currentState!.reset();
+                                titleController.text = "";
+                                contentController.text = "";
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                      contentPadding: const EdgeInsets.all(20),
+                                      content: const Text(
+                                        "Add post failed",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    );
+                                  }
+                                );
+                              }
                             }
-                          }
-                        }, 
-                        child: const Text("Add post")
+                          }, 
+                          child: const Text("Add post")
+                        ),
                       )
                     ],
                   ),

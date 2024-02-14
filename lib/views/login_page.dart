@@ -55,7 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20),
+                      width: double.infinity,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          )
+                        ),
                         onPressed: () async {
                           if(_formKey.currentState!.validate()) {
                             String username = usernameController.text;

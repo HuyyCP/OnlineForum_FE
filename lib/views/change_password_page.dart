@@ -48,63 +48,71 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   labelText: "Confirm password"
                 ),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  if(_formKey.currentState!.validate()) {
-                    String newpw = newpwController.text;
-                    String confpw = confpwController.text;
-                    if(newpw != confpw) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            contentPadding: const EdgeInsets.all(20),
-                            content: const Text(
-                              "Passwords do not match",
-                              textAlign: TextAlign.center,
-                            ),
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                    )
+                  ),
+                  onPressed: () async {
+                    if(_formKey.currentState!.validate()) {
+                      String newpw = newpwController.text;
+                      String confpw = confpwController.text;
+                      if(newpw != confpw) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              contentPadding: const EdgeInsets.all(20),
+                              content: const Text(
+                                "Passwords do not match",
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                          }
+                        );
+                      } else {
+                        if(await AccountAPIService.changePassword(newpw)) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                contentPadding: const EdgeInsets.all(20),
+                                content: const Text(
+                                  "Change password successfully",
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            }
+                          );
+                          _formKey.currentState!.reset();
+                          newpwController.text = "";
+                          confpwController.text = "";
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                contentPadding: const EdgeInsets.all(20),
+                                content: const Text(
+                                  "Change password failed",
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            }
                           );
                         }
-                      );
-                    } else {
-                      if(await AccountAPIService.changePassword(newpw)) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                              contentPadding: const EdgeInsets.all(20),
-                              content: const Text(
-                                "Change password successfully",
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          }
-                        );
-                        _formKey.currentState!.reset();
-                        newpwController.text = "";
-                        confpwController.text = "";
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                              contentPadding: const EdgeInsets.all(20),
-                              content: const Text(
-                                "Change password failed",
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          }
-                        );
                       }
                     }
-                  }
-                }, 
-                child: const Text("Change"))
+                  }, 
+                  child: const Text("Change")),
+              )
             ],
           ),
         )

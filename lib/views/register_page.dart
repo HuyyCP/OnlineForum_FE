@@ -107,7 +107,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20),
+                      width: double.infinity,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          )
+                        ),
                         onPressed: () async {
                           if(_formKey.currentState!.validate()) {
                             String name = nameController.text;
