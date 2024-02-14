@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/subject_api_service.dart';
 import 'package:onlineforum_fe/models/subject_model.dart';
+import 'package:onlineforum_fe/widget/add_post_btn.dart';
 import 'package:onlineforum_fe/widget/menu_btn.dart';
 import '../widget/subject_card.dart';
 
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
           MenuButton()
         ]
       ),
+      floatingActionButton: const AddPostButton(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10),

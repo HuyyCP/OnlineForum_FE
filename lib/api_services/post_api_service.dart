@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PostAPIService {
   static const String _getPostAPI = '/post';
+  static const String _addPostAPI = '/post/add';
 
   static  Future<PostExpandModel?> getPost(String idpost) async {
     try {
@@ -46,6 +47,27 @@ class PostAPIService {
       }
     } catch (err) {
       return null;
+    }
+  }
+
+  static Future<bool> addPost(idsubject, title, content) async {
+    try {
+      var prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString('token');
+      final response = await http.post(
+        Uri.http(Config.apiURL, _addPostAPI),
+        headers: {
+          'Authorization' : token!
+        },
+        body : {
+          'idsubject': idsubject,
+          'title': title,
+          'content': content
+        }
+      );
+      return response.statusCode == 200;
+    } catch (err) {
+      return false;
     }
   }
 }

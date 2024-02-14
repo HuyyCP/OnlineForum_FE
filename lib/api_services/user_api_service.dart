@@ -52,10 +52,7 @@ class UserAPIService {
           "phonenumber": phonenumber
         }
       );
-      if (response.statusCode == 200) {
-
-      }
-      return true;
+      return response.statusCode == 200;
     } catch (err) {
       return false;
     }

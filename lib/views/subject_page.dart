@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/subsubject_api_service.dart';
+import 'package:onlineforum_fe/widget/add_post_btn.dart';
 import 'package:onlineforum_fe/widget/menu_btn.dart';
 import 'package:onlineforum_fe/widget/post_card.dart';
 
@@ -26,6 +27,7 @@ class _SubjectPageState extends State<SubjectPage> {
                 MenuButton()
               ]
             ),
+            floatingActionButton: const AddPostButton(),
             body: Expanded(
               child: SingleChildScrollView(
                 child: Container(

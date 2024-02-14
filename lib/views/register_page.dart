@@ -40,25 +40,27 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     TextFormField(
-                      validator: validateName,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: nameController,
                       decoration: const InputDecoration(
                         labelText: "Name",
                       ),
                     ),
                     TextFormField(
-                      validator: validateUsername,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: usernameController,
                       decoration: const InputDecoration(
                         labelText: "Username",
                       ),
                     ),
                     TextFormField(
-                      validator: validatePassword,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -66,6 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: validateEmail,
                       controller: emailController,
                       decoration: const InputDecoration(
@@ -77,6 +80,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              validator: validateEmpty,
                               controller: dobController,
                               decoration: const InputDecoration(
                                 labelText: "Date of birth",
@@ -93,7 +98,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                       ),
                     TextFormField( 
-                      validator: validatePhonenumber,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: phonenumberController,
                       decoration: const InputDecoration(
                         labelText: "Phone number",
@@ -110,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             String dob = dobController.text;
                             String email = emailController.text;
                             String phonenumber = phonenumberController.text;
-
+                            
                             if (await AccountAPIService.register(name, username, password, dob, email, phonenumber)) {
                               Navigator.pushReplacementNamed(context, '/login');
                               showDialog(

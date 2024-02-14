@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineforum_fe/api_services/comment_api_service.dart';
 import 'package:onlineforum_fe/api_services/post_api_service.dart';
+import 'package:onlineforum_fe/helpers/validators.dart';
 import 'package:onlineforum_fe/models/postbrief_model.dart';
 import 'package:onlineforum_fe/widget/comment_card.dart';
 import 'package:onlineforum_fe/widget/menu_btn.dart';
@@ -14,7 +15,8 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  TextEditingController messageController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController commentController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -79,31 +81,35 @@ class _PostPageState extends State<PostPage> {
                         )
                       )
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: messageController,
-                            decoration: const InputDecoration(
-                              hintText: "Comment here",
+                    child: Form(
+                      key: _formKey,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              validator: validateEmpty,
+                              controller: commentController,
+                              decoration: const InputDecoration(
+                                hintText: "Comment here",
+                              ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () async {
-                            await CommentAPIService.addComment(messageController.text, snapshot.data!.idpost);
-                            setState(() {
-                              // Update the state and refresh the comment list
-                            });
-                            messageController.text = "";
-                            scrollToTop();
-                          },
-                          icon: const Icon(
-                            Icons.send,
-                            color: Colors.blue,
+                          IconButton(
+                            onPressed: () async {
+                              if(_formKey.currentState!.validate()) {
+                                await CommentAPIService.addComment(commentController.text, snapshot.data!.idpost);
+                                commentController.text = "";
+                                setState(() { });
+                                scrollToTop();
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.send,
+                              color: Colors.blue,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

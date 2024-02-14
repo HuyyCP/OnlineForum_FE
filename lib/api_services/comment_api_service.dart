@@ -20,11 +20,7 @@ class CommentAPIService {
           "idpost": idpost
         }
       );
-      if(response.statusCode == 200) {
-        return true;
-      } else {
-        return false;
-      }
+      return response.statusCode == 200;
     } catch (err) {
       return false;
     }

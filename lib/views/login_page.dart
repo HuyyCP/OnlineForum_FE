@@ -34,18 +34,19 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     TextFormField(
-                      validator: validateUsername,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: usernameController,
                       decoration: const InputDecoration(
                         labelText: "Username",
                       ),
                     ),
                     TextFormField(
-                      validator: validatePassword,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: validateEmpty,
                       controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(

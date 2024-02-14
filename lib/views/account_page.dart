@@ -46,7 +46,7 @@ class _AccountPageState extends State<AccountPage> {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: validateName,
+                        validator: validateEmpty,
                         controller: nameController,
                         decoration: const InputDecoration(
                           labelText: "Name",
@@ -64,6 +64,7 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              validator: validateEmpty,
                               controller: dobController,
                               decoration: const InputDecoration(
                                 labelText: "Date of birth",
@@ -80,7 +81,7 @@ class _AccountPageState extends State<AccountPage> {
                         ],
                       ),
                       TextFormField( 
-                        validator: validatePhonenumber,
+                        validator: validateEmpty,
                         controller: phonenumberController,
                         decoration: const InputDecoration(
                           labelText: "Phone number",

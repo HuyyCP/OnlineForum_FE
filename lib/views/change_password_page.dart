@@ -28,11 +28,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         margin: const EdgeInsets.all(10), 
         child: Form(
           key: _formKey,
-          autovalidateMode: AutovalidateMode.always,
           child: Column(
             children: [
               TextFormField(
-                validator: validatePassword,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validateEmpty,
                 controller: newpwController,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -40,7 +40,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 ),
               ),
               TextFormField(
-                validator: validatePassword,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validateEmpty,
                 controller: confpwController,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -82,6 +83,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             );
                           }
                         );
+                        _formKey.currentState!.reset();
+                        newpwController.text = "";
+                        confpwController.text = "";
                       } else {
                         showDialog(
                           context: context,
